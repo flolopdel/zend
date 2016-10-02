@@ -1,0 +1,57 @@
+<?php
+
+$form->setAttribute('action', $this->url('flights', array('action' => 'details')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+$form->get('flights')->setValue($flights);
+echo $this->formRow($form->get('flights'));
+
+?>
+
+<table class="table">
+    <tr>
+        <th colspan="6">Outbound</th>
+    </tr>
+<?php foreach ($outsbound as $index => $flightDetail){ ?> 
+	<tr>
+		<td>
+		<?php
+        	$form->get('outselection')->setValueOptions(array($index => ''));
+        	echo $this->formRow($form->get('outselection'));
+		?>
+		</td>
+		<td><?= $flightDetail->date;?></td>
+		<td><?= $flightDetail->depart->airport->name;?> --> <?= $flightDetail->arrival->airport->name;?></td>
+		<td><?= $flightDetail->datetime;?> --> <?= $flightDetail->datetime ;?></td>
+		<td>€ <?= $flightDetail->price;?></td>
+		<td><?= ($flightDetail->seatsAvailable <= 10)? 'Only '.$flightDetail->seatsAvailable.' tickets at € '.$flightDetail->price : 'Departure from '.$flightDetail->depart->airport->name ?></td>
+	</tr>
+<?php }?> 
+</table>
+
+￼<table class="table">
+    <tr>
+        <th colspan="6">Return</th>
+    </tr>
+<?php foreach ($return as $index => $flightDetail){ ?> 
+	<tr>
+		<td>
+		<?php
+        	$form->get('returnselection')->setValueOptions(array($index => ''));
+        	echo $this->formRow($form->get('returnselection'));
+		?>
+		</td>
+		<td><?= $flightDetail->date;?></td>
+		<td><?= $flightDetail->depart->airport->name;?> --> <?= $flightDetail->arrival->airport->name;?></td>
+		<td><?= $flightDetail->datetime;?> --> <?= $flightDetail->datetime ;?></td>
+		<td>€ <?= $flightDetail->price;?></td>
+		<td><?= ($flightDetail->seatsAvailable <= 10)? 'Only '.$flightDetail->seatsAvailable.' tickets at € '.$flightDetail->price : 'Departure from '.$flightDetail->depart->airport->name ?></td>
+	</tr>
+<?php }?> 
+</table>
+
+<?php
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>
