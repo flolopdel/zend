@@ -39,6 +39,7 @@ return array(
         'template_map' => array(
             'flight/flight/index'           => __DIR__ . '/../view/flight/index.phtml',
             'flight/flight/details'           => __DIR__ . '/../view/flight/details.phtml',
+            'flight/flight/show'           => __DIR__ . '/../view/flight/show.phtml',
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view2',

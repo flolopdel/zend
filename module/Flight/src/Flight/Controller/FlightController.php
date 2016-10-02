@@ -56,8 +56,13 @@ class FlightController extends AbstractActionController
         if ($requestForm->isPost()) { 
             $form->setInputFilter($form->getInputFilter());
             $form->setData($requestForm->getPost());
-            if ($form->isValid()) { 
-                die("yes");
+
+            if ($form->isValid()) {
+                $formData           = $form->getData(); 
+                $outsbound_index    = (int)$formData['outselection'];
+                $return_index       = (int)$formData['returnselection'];
+
+                return $this->showAction($outsbound[$outsbound_index],$return[$return_index]);
             }
         }
 
@@ -67,8 +72,10 @@ class FlightController extends AbstractActionController
 
     }
 
-    public function showAction()
+    public function showAction($outsbound, $return)
     {
+
+        return array('outsbound' => $outsbound, 'return' => $return);   
     }
 
     public function deleteAction()

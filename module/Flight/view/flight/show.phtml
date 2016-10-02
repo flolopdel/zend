@@ -1,0 +1,36 @@
+<?php
+
+$form->setAttribute('action', $this->url('flights', array('action' => 'details')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+$form->get('flights')->setValue($flights);
+echo $this->formRow($form->get('flights'));
+
+?>
+
+<table class="table">
+    <tr>
+        <th colspan="5">Outbound</th>
+    </tr>
+	<tr>
+		<td><?= $outsbound->date;?></td>
+		<td><?= $outsbound->depart->airport->name;?> --> <?= $outsbound->arrival->airport->name;?></td>
+		<td><?= $outsbound->datetime;?> --> <?= $outsbound->datetime ;?></td>
+		<td>€ <?= $outsbound->price;?></td>
+		<td><?= ($outsbound->seatsAvailable <= 10)? 'Only '.$outsbound->seatsAvailable.' tickets at € '.$outsbound->price : 'Departure from '.$outsbound->depart->airport->name ?></td>
+	</tr>
+</table>
+
+￼<table class="table">
+    <tr>
+        <th colspan="5">Return</th>
+    </tr>
+	<tr>
+		<td><?= $return->date;?></td>
+		<td><?= $return->depart->airport->name;?> --> <?= $return->arrival->airport->name;?></td>
+		<td><?= $return->datetime;?> --> <?= $return->datetime ;?></td>
+		<td>€ <?= $return->price;?></td>
+		<td><?= ($return->seatsAvailable <= 10)? 'Only '.$return->seatsAvailable.' tickets at € '.$return->price : 'Departure from '.$return->depart->airport->name ?></td>
+	</tr>
+</table>
