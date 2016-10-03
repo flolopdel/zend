@@ -4,8 +4,6 @@ $form->setAttribute('action', $this->url('flights', array('action' => 'details')
 $form->prepare();
 
 echo $this->form()->openTag($form);
-$form->get('flights')->setValue($flights);
-echo $this->formRow($form->get('flights'));
 
 ?>
 
